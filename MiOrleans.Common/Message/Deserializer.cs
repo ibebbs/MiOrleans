@@ -42,16 +42,16 @@ namespace MiOrleans.Common.Message
             public string Version { get; set; }
         }
 
-        private static IInbound ParseReadAck(Received received, string from)
+        private class DoorSensorData
         {
-            switch (received.Model)
-            {
-                case "gateway": return ParseGatewaySensorRead(received, from);
-                default: return new Inbound.Unknown { Sid = received.Sid };
-            }
+            [JsonProperty("voltage")]
+            public int Voltage { get; set; }
+
+            [JsonProperty("status")]
+            public Inbound.DoorSensor.Status Status { get; set; }
         }
 
-        private static IInbound ParseGatewaySensorRead(Received received, string from)
+        private static IInbound DeserializeGatewaySensorRead(Received received)
         {
             GatewaySensorData data = JsonConvert.DeserializeObject<GatewaySensorData>(received.Data);
 
@@ -64,7 +64,49 @@ namespace MiOrleans.Common.Message
             };
         }
 
-        private static IInbound ParseGetIdList(Received received, string from)
+        private static IInbound DeserializeDoorSensorRead(Received received)
+        {
+            DoorSensorData data = JsonConvert.DeserializeObject<DoorSensorData>(received.Data);
+
+            return new Inbound.DoorSensor.Reading
+            {
+                Sid = received.Sid,
+                Voltage = data.Voltage,
+                Status = data.Status
+            };
+        }
+
+        private static IInbound DeserializeDoorSensorReport(Received received)
+        {
+            DoorSensorData data = JsonConvert.DeserializeObject<DoorSensorData>(received.Data);
+
+            return new Inbound.DoorSensor.Report
+            {
+                Sid = received.Sid,
+                Status = data.Status
+            };
+        }
+
+        private static IInbound DeserializeReadAck(Received received)
+        {
+            switch (received.Model)
+            {
+                case "gateway": return DeserializeGatewaySensorRead(received);
+                case "magnet": return DeserializeDoorSensorRead(received);
+                default: return new Inbound.Unknown { Sid = received.Sid };
+            }
+        }
+
+        private static IInbound DeserializeReport(Received received)
+        {
+            switch (received.Model)
+            {
+                case "magnet": return DeserializeDoorSensorReport(received);
+                default: return new Inbound.Unknown { Sid = received.Sid };
+            }
+        }
+
+        private static IInbound DeserializeGetIdList(Received received)
         {
             string[] subDevices = JsonConvert.DeserializeObject<string[]>(received.Data);
 
@@ -76,7 +118,7 @@ namespace MiOrleans.Common.Message
             };
         }
 
-        private static IInbound ParseHeartbeat(Received received, string from)
+        private static IInbound DeserializeHeartbeat(Received received)
         {
             HeartbeatData data = JsonConvert.DeserializeObject<HeartbeatData>(received.Data);
 
@@ -91,13 +133,13 @@ namespace MiOrleans.Common.Message
         public IInbound Deserialize(Transmission transmission)
         {
             Received received = JsonConvert.DeserializeObject<Received>(transmission.Data);
-            string from = transmission.IpAddress;
 
             switch (received.Command)
             {
-                case "heartbeat": return ParseHeartbeat(received, from);
-                case "get_id_list_ack": return ParseGetIdList(received, from);
-                case "read_ack": return ParseReadAck(received, from);
+                case "heartbeat": return DeserializeHeartbeat(received);
+                case "get_id_list_ack": return DeserializeGetIdList(received);
+                case "read_ack": return DeserializeReadAck(received);
+                case "report": return DeserializeReport(received);
                 default: return new Inbound.Unknown { Sid = received.Sid };
             }
         }

@@ -39,7 +39,7 @@ namespace MiOrleans.Tests.Message
         }
 
         [TestMethod]
-        public void SuccessfullyDeserializeAGatewayRead()
+        public void SuccessfullyDeserializeAGatewayReading()
         {
             string source = "{\"cmd\":\"read_ack\",\"model\":\"gateway\",\"sid\":\"7811dcb06972\",\"short_id\":0,\"data\":\"{\\\"rgb\\\":0,\\\"illumination\\\":1292,\\\"proto_version\\\":\\\"1.0.9\\\"}\"}";
             Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
@@ -52,6 +52,35 @@ namespace MiOrleans.Tests.Message
             Assert.AreEqual(reading.Rgb, "0");
             Assert.AreEqual(reading.Illumination, 1292);
             Assert.AreEqual(reading.Version, "1.0.9");
+        }
+
+        [TestMethod]
+        public void SuccessfullyDeserializeADoorSensorReading()
+        {
+            string source = "{\"cmd\":\"read_ack\",\"model\":\"magnet\",\"sid\":\"158d0001c1cdfb\",\"short_id\":56258,\"data\":\"{\\\"voltage\\\":3115,\\\"status\\\":\\\"open\\\"}\"}";
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+
+            Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.DoorSensor.Reading));
+
+            Common.Message.Inbound.DoorSensor.Reading reading = (Common.Message.Inbound.DoorSensor.Reading)inbound;
+
+            Assert.AreEqual(reading.Sid, "158d0001c1cdfb");
+            Assert.AreEqual(reading.Voltage, 3115);
+            Assert.AreEqual(reading.Status, Common.Message.Inbound.DoorSensor.Status.Open);
+        }
+
+        [TestMethod]
+        public void SuccessfullyDeserializeADoorSensorReport()
+        {
+            string source = "{\"cmd\":\"report\",\"model\":\"magnet\",\"sid\":\"158d0001c1cdfb\",\"short_id\":56258,\"data\":\"{\\\"status\\\":\\\"open\\\"}\"}";
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+
+            Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.DoorSensor.Report));
+
+            Common.Message.Inbound.DoorSensor.Report report = (Common.Message.Inbound.DoorSensor.Report)inbound;
+
+            Assert.AreEqual(report.Sid, "158d0001c1cdfb");
+            Assert.AreEqual(report.Status, Common.Message.Inbound.DoorSensor.Status.Open);
         }
     }
 }

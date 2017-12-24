@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Message\Inbound\DoorSensor\Report.cs" />
+    <Compile Include="Message\Inbound\DoorSensor\Status.cs" />
+    <Compile Include="Message\Inbound\DoorSensor\Reading.cs" />
     <Compile Include="Message\Outbound\GetIdList.cs" />
     <Compile Include="Message\Outbound\Read.cs" />
     <Compile Include="StringToGuidConverter.cs" />
