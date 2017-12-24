@@ -48,7 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Message\DeserializerShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MiOrleans.Common\MiOrleans.Common.csproj">
+      <Project>{9ca179f9-d2cb-466f-8c60-4ce4465743fe}</Project>
+      <Name>MiOrleans.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MiOrleans\MiOrleans.csproj">
       <Project>{7127d9e6-2b98-4611-9f9b-bccccf7312be}</Project>
       <Name>MiOrleans</Name>

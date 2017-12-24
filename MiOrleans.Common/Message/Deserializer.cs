@@ -72,8 +72,7 @@ namespace MiOrleans.Common.Message
             {
                 Sid = received.Sid,
                 Token = received.Token,
-                SubDevices = subDevices,
-                IpAddress = from
+                SubDevices = subDevices
             };
         }
 
@@ -85,8 +84,7 @@ namespace MiOrleans.Common.Message
             {
                 Sid = received.Sid,
                 Model = received.Model,
-                Token = received.Token,
-                IpAddress = from
+                Token = received.Token
             };
         }
 

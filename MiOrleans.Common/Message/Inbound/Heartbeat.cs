@@ -11,6 +11,5 @@ namespace MiOrleans.Common.Message.Inbound
         public string Sid { get; set; }
         public string Model { get; set; }
         public string Token { get; set; }
-        public string IpAddress { get; set; }
     }
 }

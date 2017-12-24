@@ -12,8 +12,6 @@ namespace MiOrleans.Common.Message.Inbound
 
         public string Sid { get; set; }
 
-        public string IpAddress { get; set; }
-
         public string Token { get; set; }
 
         public IEnumerable<string> SubDevices { get; set; }
