@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans.Host", "MiOrleans.Host\MiOrleans.Host.csproj", "{BCDA3D3E-9FCD-4F62-A8DC-DF77B3702B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans.Grain.Interfaces", "MiOrleans.Grain.Interfaces\MiOrleans.Grain.Interfaces.csproj", "{EA3A5845-769B-4B6A-8910-B8B4E03A78C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans.Grain.Implementations", "MiOrleans.Grain.Implementations\MiOrleans.Grain.Implementations.csproj", "{DB16CD0B-34E8-494B-9790-ED40F24C9E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans", "MiOrleans\MiOrleans.csproj", "{7127D9E6-2B98-4611-9F9B-BCCCCF7312BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans.Tests", "MiOrleans.Tests\MiOrleans.Tests.csproj", "{8067071A-852D-481E-8648-6368186A9214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiOrleans.Common", "MiOrleans.Common\MiOrleans.Common.csproj", "{9CA179F9-D2CB-466F-8C60-4CE4465743FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCDA3D3E-9FCD-4F62-A8DC-DF77B3702B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDA3D3E-9FCD-4F62-A8DC-DF77B3702B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDA3D3E-9FCD-4F62-A8DC-DF77B3702B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDA3D3E-9FCD-4F62-A8DC-DF77B3702B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA3A5845-769B-4B6A-8910-B8B4E03A78C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA3A5845-769B-4B6A-8910-B8B4E03A78C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA3A5845-769B-4B6A-8910-B8B4E03A78C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA3A5845-769B-4B6A-8910-B8B4E03A78C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB16CD0B-34E8-494B-9790-ED40F24C9E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB16CD0B-34E8-494B-9790-ED40F24C9E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB16CD0B-34E8-494B-9790-ED40F24C9E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB16CD0B-34E8-494B-9790-ED40F24C9E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7127D9E6-2B98-4611-9F9B-BCCCCF7312BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7127D9E6-2B98-4611-9F9B-BCCCCF7312BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7127D9E6-2B98-4611-9F9B-BCCCCF7312BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7127D9E6-2B98-4611-9F9B-BCCCCF7312BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8067071A-852D-481E-8648-6368186A9214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8067071A-852D-481E-8648-6368186A9214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8067071A-852D-481E-8648-6368186A9214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8067071A-852D-481E-8648-6368186A9214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA179F9-D2CB-466F-8C60-4CE4465743FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA179F9-D2CB-466F-8C60-4CE4465743FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA179F9-D2CB-466F-8C60-4CE4465743FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA179F9-D2CB-466F-8C60-4CE4465743FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E48E6A4-D5AC-40E7-AD7B-78FEEDA3D576}
+	EndGlobalSection
+EndGlobal
