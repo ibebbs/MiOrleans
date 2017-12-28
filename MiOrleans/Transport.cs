@@ -14,7 +14,7 @@ namespace MiOrleans
         private const string MulticastAddress = "224.0.0.50";
         private const int ServerPort = 9898;
 
-        private readonly IConnectableObservable<Common.Transmission> _received;
+        private readonly IConnectableObservable<Common.Datagram> _received;
         private readonly Socket _socket;
 
         public Transport()
@@ -37,14 +37,14 @@ namespace MiOrleans
             return _received.Connect();
         }
 
-        public Task Send(Common.Transmission transmission)
+        public Task Send(Common.Datagram datagram)
         {
-            _socket.SendTo(Encoding.ASCII.GetBytes(transmission.Data), new IPEndPoint(IPAddress.Parse(transmission.IpAddress), ServerPort));
+            _socket.SendTo(Encoding.ASCII.GetBytes(datagram.Data), new IPEndPoint(IPAddress.Parse(datagram.IpAddress), ServerPort));
 
             return Task.CompletedTask;
         }
 
-        public IObservable<Common.Transmission> Received
+        public IObservable<Common.Datagram> Received
         {
             get { return _received; }
         }

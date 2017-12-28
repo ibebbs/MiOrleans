@@ -20,7 +20,7 @@ namespace MiOrleans
             return (IPEndPoint)endpoint;
         }
 
-        public static Common.Transmission ReceiveFrom(this Socket socket)
+        public static Common.Datagram ReceiveFrom(this Socket socket)
         {
             var data = new byte[1024];
 
@@ -30,7 +30,7 @@ namespace MiOrleans
             string packet = Encoding.ASCII.GetString(data, 0, len);
             string from = endpoint.GetIpAddress();
 
-            return new Common.Transmission(packet, from);
+            return new Common.Datagram(packet, from);
         }
     }
 }

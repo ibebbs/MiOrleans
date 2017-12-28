@@ -41,10 +41,10 @@ namespace MiOrleans.Host
             var transport = new Transport();
 
             var inboundSubscription = transport.Received
-                .Subscribe(transmission => client.InboundTransmissionStream(transmission.IpAddress).OnNextAsync(transmission));
+                .Subscribe(datagram => client.InboundTransmissionStream(datagram.IpAddress).OnNextAsync(datagram));
 
             var outboundSubscription = client.OutboundTransmissionStream()
-                .SubscribeAsync((transmission, token) => transport.Send(transmission))
+                .SubscribeAsync((datagram, token) => transport.Send(datagram))
                 .Result;
 
             var connection = transport.Connect();
@@ -64,18 +64,18 @@ namespace MiOrleans.Host
 
     internal static class Extensions
     {
-        public static IAsyncStream<Common.Transmission> OutboundTransmissionStream(this IClusterClient client)
+        public static IAsyncStream<Common.Datagram> OutboundTransmissionStream(this IClusterClient client)
         {
             return client
                 .GetStreamProvider(Common.Constants.OutboundTransmissionStreamProvider)
-                .GetStream<Common.Transmission>(Guid.Empty, Common.Constants.OutboundTransmissionStream);
+                .GetStream<Common.Datagram>(Guid.Empty, Common.Constants.OutboundTransmissionStream);
         }
 
-        public static IAsyncStream<Common.Transmission> InboundTransmissionStream(this IClusterClient client, string ipAddress)
+        public static IAsyncStream<Common.Datagram> InboundTransmissionStream(this IClusterClient client, string ipAddress)
         {
             return client
                 .GetStreamProvider(Common.Constants.InboundTransmissionStreamProvider)
-                .GetStream<Common.Transmission>(Common.StringToGuidConverter.Default.Convert(ipAddress), Common.Constants.InboundTransmissionStream);
+                .GetStream<Common.Datagram>(Common.StringToGuidConverter.Default.Convert(ipAddress), Common.Constants.InboundTransmissionStream);
         }
     }
 }

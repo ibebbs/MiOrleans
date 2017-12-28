@@ -12,7 +12,7 @@ namespace MiOrleans.Tests.Message
         public void SuccessfullyDeserializeAHeartbeat()
         {
             string source = "{\"cmd\":\"heartbeat\",\"model\":\"gateway\",\"sid\":\"7811dcb06972\",\"short_id\":\"0\",\"token\":\"vYgMNFGfJWk0M22U\",\"data\":\"{\\\"ip\\\":\\\"192.168.2.12\\\"}\"}";
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Datagram(source, "127.0.0.1"));
 
             Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.Heartbeat));
 
@@ -26,7 +26,7 @@ namespace MiOrleans.Tests.Message
         public void SuccessfullyDeserializeAnIdList()
         {
             string source = "{\"cmd\":\"get_id_list_ack\",\"sid\":\"7811dcb06972\",\"token\":\"L0DI4IiFAvAgInyL\",\"data\":\"[\\\"158d0001a200f5\\\",\\\"158d0001c1cdfb\\\"]\"}";
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Datagram(source, "127.0.0.1"));
 
             Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.IdList));
 
@@ -42,7 +42,7 @@ namespace MiOrleans.Tests.Message
         public void SuccessfullyDeserializeAGatewayReading()
         {
             string source = "{\"cmd\":\"read_ack\",\"model\":\"gateway\",\"sid\":\"7811dcb06972\",\"short_id\":0,\"data\":\"{\\\"rgb\\\":0,\\\"illumination\\\":1292,\\\"proto_version\\\":\\\"1.0.9\\\"}\"}";
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Datagram(source, "127.0.0.1"));
 
             Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.Gateway.Reading));
 
@@ -58,7 +58,7 @@ namespace MiOrleans.Tests.Message
         public void SuccessfullyDeserializeADoorSensorReading()
         {
             string source = "{\"cmd\":\"read_ack\",\"model\":\"magnet\",\"sid\":\"158d0001c1cdfb\",\"short_id\":56258,\"data\":\"{\\\"voltage\\\":3115,\\\"status\\\":\\\"open\\\"}\"}";
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Datagram(source, "127.0.0.1"));
 
             Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.DoorSensor.Reading));
 
@@ -73,7 +73,7 @@ namespace MiOrleans.Tests.Message
         public void SuccessfullyDeserializeADoorSensorReport()
         {
             string source = "{\"cmd\":\"report\",\"model\":\"magnet\",\"sid\":\"158d0001c1cdfb\",\"short_id\":56258,\"data\":\"{\\\"status\\\":\\\"open\\\"}\"}";
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Transmission(source, "127.0.0.1"));
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(new Common.Datagram(source, "127.0.0.1"));
 
             Assert.IsInstanceOfType(inbound, typeof(Common.Message.Inbound.DoorSensor.Report));
 

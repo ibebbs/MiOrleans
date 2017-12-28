@@ -43,20 +43,20 @@ namespace MiOrleans.Grain.Implementations
             }
         }
 
-        private async Task Process(Common.Transmission inboundTransmission)
+        private async Task Process(Common.Datagram inboundDatagram)
         {
-            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(inboundTransmission);
+            Common.Message.IInbound inbound = Common.Message.Deserializer.Default.Deserialize(inboundDatagram);
 
             IEnumerable<Common.Message.IOutbound> outbound = await Process(inbound);
 
             if (outbound.Any())
             {
                 var streamProvider = GetStreamProvider(Common.Constants.OutboundTransmissionStreamProvider);
-                var stream = streamProvider.GetStream<Common.Transmission>(Guid.Empty, Common.Constants.OutboundTransmissionStream);
+                var stream = streamProvider.GetStream<Common.Datagram>(Guid.Empty, Common.Constants.OutboundTransmissionStream);
 
-                foreach(var outboundTransmission in outbound.Select(message => Common.Message.Serializer.Default.Serialize(message, inboundTransmission.IpAddress)))
+                foreach(var outboundDatagram in outbound.Select(message => Common.Message.Serializer.Default.Serialize(message, inboundDatagram.IpAddress)))
                 {
-                    await stream.OnNextAsync(outboundTransmission);
+                    await stream.OnNextAsync(outboundDatagram);
                 }
             }
         }
@@ -64,8 +64,8 @@ namespace MiOrleans.Grain.Implementations
         public async override Task OnActivateAsync()
         {
             var streamProvider = GetStreamProvider(Common.Constants.InboundTransmissionStreamProvider);
-            var stream = streamProvider.GetStream<Common.Transmission>(this.GetPrimaryKey(), Common.Constants.InboundTransmissionStream);
-            await stream.SubscribeAsync((transmission, token) => Process(transmission));
+            var stream = streamProvider.GetStream<Common.Datagram>(this.GetPrimaryKey(), Common.Constants.InboundTransmissionStream);
+            await stream.SubscribeAsync((datagram, token) => Process(datagram));
         }
     }
 }

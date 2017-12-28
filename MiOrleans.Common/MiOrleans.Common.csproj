@@ -59,7 +59,7 @@
     <Compile Include="Message\Deserializer.cs" />
     <Compile Include="Message\Serializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transmission.cs" />
+    <Compile Include="Datagram.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -27,11 +27,11 @@
             }
         }
 
-        public Transmission Serialize(IOutbound message, string ipAddress)
+        public Datagram Serialize(IOutbound message, string ipAddress)
         {
             string data = Serialize(message);
 
-            return new Transmission(data, ipAddress);
+            return new Datagram(data, ipAddress);
         }
     }
 }

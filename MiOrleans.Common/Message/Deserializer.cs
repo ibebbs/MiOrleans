@@ -130,9 +130,9 @@ namespace MiOrleans.Common.Message
             };
         }
 
-        public IInbound Deserialize(Transmission transmission)
+        public IInbound Deserialize(Datagram datagram)
         {
-            Received received = JsonConvert.DeserializeObject<Received>(transmission.Data);
+            Received received = JsonConvert.DeserializeObject<Received>(datagram.Data);
 
             switch (received.Command)
             {

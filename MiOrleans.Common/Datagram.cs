@@ -3,9 +3,9 @@
 namespace MiOrleans.Common
 {
     [Serializable]
-    public class Transmission
+    public class Datagram
     {
-        public Transmission(string data, string ipAddress)
+        public Datagram(string data, string ipAddress)
         {
             Data = data;
             IpAddress = ipAddress;
