@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gateway.cs" />
-    <Compile Include="TransmissionProcessor.cs" />
+    <Compile Include="DatagramProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

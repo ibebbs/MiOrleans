@@ -8,7 +8,7 @@ using Orleans.Streams;
 namespace MiOrleans.Grain.Implementations
 {
     [ImplicitStreamSubscription(Common.Constants.InboundTransmissionStream)]
-    public class TransmissionProcessor : Orleans.Grain, Interfaces.ITransmissionProcessor
+    public class DatagramProcessor : Orleans.Grain, Interfaces.IDatagramProcessor
     {
         private Task<IEnumerable<Common.Message.IOutbound>> Process(Common.Message.Inbound.Gateway.Reading reading)
         {
